@@ -9,10 +9,10 @@ def depositar(saldo, historico):
     if deposito > 0:
         saldo = saldo + deposito
         historico.append(f'Deposito: R${deposito},00')
-        return saldo
+        return(saldo)
     else:
         print('valor invalido')
-        return saldo
+
 
 
 
@@ -21,8 +21,12 @@ while True :
     opcao = int(input('digite um comando : '))
 
     if opcao == 1 :  # depositar = 1
-        saldo = depositar(saldo, historico)
-
+        deposito = int(input('quanto você deseja depositar: '))
+        if deposito > 0 :
+            saldo = saldo + deposito
+            historico.append(f'Deposito: R${deposito},00')
+        else:
+            print('valor invalido')
 
 
 
