@@ -14,6 +14,23 @@ def depositar(saldo, historico):
         print('valor invalido')
         return saldo
 
+def saque(saldo , historico ,saque_restantes) :
+    sacar = int(input('Quanto você deseja sacar? : '))
+    if sacar <= 0:
+        print('Valor inválido.')
+        return saldo , saque_restantes
+    elif saque_restantes <= 0:
+        print('Você estourou seu limite de saques diários.')
+        return saldo , saque_restantes
+    elif saldo < sacar:
+        print(f'Saldo insuficiente. Saldo atual: R${saldo},00')
+        return saldo, saque_restantes
+    else:
+        saque_restantes -= 1
+        saldo -= sacar
+        historico.append(f'Saque: R${sacar},00')
+        print(f'Você sacou R${sacar},00')
+        return (saldo, saque_restantes)
 
 
 while True :
@@ -27,21 +44,8 @@ while True :
 
 
     elif opcao == 2:  # sacar
-        sacar = int(input('Quanto você deseja sacar? : '))
-        if sacar <= 0:
-            print('Valor inválido.')
+        saldo , saque_restantes = saque(saldo , historico ,saque_restantes,)
 
-        elif saque_restantes <= 0:
-            print('Você estourou seu limite de saques diários.')
-
-        elif saldo < sacar:
-            print(f'Saldo insuficiente. Saldo atual: R${saldo},00')
-
-        else:
-            saque_restantes -= 1
-            saldo -= sacar
-            historico.append(f'Saque: R${sacar},00')
-            print(f'Você sacou R${sacar},00')
 
 
     elif opcao == 3: # extrato = 3
