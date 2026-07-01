@@ -13,6 +13,23 @@ def depositar(saldo, historico):
     else:
         print('valor invalido')
 
+def saque(saldo , historico ,saque_restantes) :
+    sacar = int(input('Quanto você deseja sacar? : '))
+    if sacar <= 0:
+        print('Valor inválido.')
+        return saldo , saque_restantes
+    elif saque_restantes <= 0:
+        print('Você estourou seu limite de saques diários.')
+        return saldo , saque_restantes
+    elif saldo < sacar:
+        print(f'Saldo insuficiente. Saldo atual: R${saldo},00')
+        return saldo, saque_restantes
+    else:
+        saque_restantes -= 1
+        saldo -= sacar
+        historico.append(f'Saque: R${sacar},00')
+        print(f'Você sacou R${sacar},00')
+        return (saldo, saque_restantes)
 
 
 
@@ -21,31 +38,11 @@ while True :
     opcao = int(input('digite um comando : '))
 
     if opcao == 1 :  # depositar = 1
-        deposito = int(input('quanto você deseja depositar: '))
-        if deposito > 0 :
-            saldo = saldo + deposito
-            historico.append(f'Deposito: R${deposito},00')
-        else:
-            print('valor invalido')
-
+        saldo = depositar(saldo, historico)
 
 
     elif opcao == 2:  # sacar
-        sacar = int(input('Quanto você deseja sacar? : '))
-        if sacar <= 0:
-            print('Valor inválido.')
-
-        elif saque_restantes <= 0:
-            print('Você estourou seu limite de saques diários.')
-
-        elif saldo < sacar:
-            print(f'Saldo insuficiente. Saldo atual: R${saldo},00')
-
-        else:
-            saque_restantes -= 1
-            saldo -= sacar
-            historico.append(f'Saque: R${sacar},00')
-            print(f'Você sacou R${sacar},00')
+        saldo, saque_restantes = saque(saldo, historico, saque_restantes, )
 
 
     elif opcao == 3: # extrato = 3

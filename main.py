@@ -32,6 +32,12 @@ def saque(saldo , historico ,saque_restantes) :
         print(f'Você sacou R${sacar},00')
         return (saldo, saque_restantes)
 
+def extrato(saldo , saque_restantes , historico):
+    print('======== EXTRATO ========')
+    for i in historico:
+        print(i)
+    print(f'limite de saques diários: {saque_restantes}')
+    print(f'Você tem R${saldo},00')
 
 while True :
     print ('[1]para depositar [2]para sacar [3] extrato [4] sair')
@@ -40,20 +46,11 @@ while True :
     if opcao == 1 :  # depositar = 1
         saldo = depositar(saldo, historico)
 
-
-
-
     elif opcao == 2:  # sacar
         saldo , saque_restantes = saque(saldo , historico ,saque_restantes,)
 
-
-
     elif opcao == 3: # extrato = 3
-        print('======== EXTRATO ========')
-        for i in historico :
-            print (i)
-        print(f'limite de saques diários: {saque_restantes}')
-        print(f'Você tem R${saldo},00')
+        extrato(saldo , saque_restantes , historico)
 
 
 
