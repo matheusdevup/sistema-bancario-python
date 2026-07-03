@@ -3,6 +3,12 @@ saldo = 0
 historico = []
 saque_restantes = 3
 opcao = 0
+usuario = {
+    'nome':'',
+    'cpf':'',
+    'data_de_nascimento':'',
+    'endereco':''
+}
 
 def depositar(saldo, historico):
     deposito = int(input('quanto você deseja depositar: '))
@@ -39,9 +45,13 @@ def extrato(saldo , saque_restantes , historico):
     print(f'limite de saques diários: {saque_restantes}')
     print(f'Você tem R${saldo},00')
 
-while True :
-    print ('[1]para depositar [2]para sacar [3] extrato [4] sair')
+def menu(opcao):
+    print('[1]para depositar [2]para sacar [3] extrato [4] sair')
     opcao = int(input('digite um comando : '))
+    return opcao
+
+while True :
+    opcao = menu(opcao)
 
     if opcao == 1 :  # depositar = 1
         saldo = depositar(saldo, historico)
